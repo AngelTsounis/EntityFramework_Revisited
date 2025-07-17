@@ -24,7 +24,13 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<Evolution>().HasData(EvolutionSeedData.GetEvolutions());
 
         modelBuilder.Entity<PokemonAbility>()
-        .HasKey(pa => new { pa.PokemonId, pa.AbilityId });
+            .HasKey(pa => new { pa.PokemonId, pa.AbilityId });
+
+        modelBuilder.Entity<PokemonAbility>()
+            .HasOne(pa => pa.Pokemon)
+            .WithMany(p => p.Abilities)
+            .HasForeignKey(pa => pa.PokemonId)
+            .OnDelete(DeleteBehavior.Restrict);  // change from Cascade to Restrict
 
         modelBuilder.Entity<Evolution>()
             .HasOne(e => e.FromPokemon)

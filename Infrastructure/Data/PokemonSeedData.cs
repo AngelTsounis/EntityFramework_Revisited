@@ -6,7 +6,7 @@ public static class PokemonSeedData
 {
     public static List<Pokemon> GetPokemons() => new()
     {
-        new Pokemon { Id = 1, Name = "Pikachu", PokedexNumber = 25, PrimaryTypeId = 1 },
+        new Pokemon { Id = 1, Name = "Pikachu", PokedexNumber = 25, PrimaryTypeId = 1},
         new Pokemon { Id = 2, Name = "Charmander", PokedexNumber = 4, PrimaryTypeId = 2 },
         new Pokemon { Id = 3, Name = "Squirtle", PokedexNumber = 7, PrimaryTypeId = 3 },
         new Pokemon { Id = 4, Name = "Bulbasaur", PokedexNumber = 1, PrimaryTypeId = 4, SecondaryTypeId = 7 },

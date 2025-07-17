@@ -1,4 +1,5 @@
 ﻿using Infrastructure;
+using Microsoft.EntityFrameworkCore;
 
 namespace PokemonAPI.Endpoints.Pokemons;
 

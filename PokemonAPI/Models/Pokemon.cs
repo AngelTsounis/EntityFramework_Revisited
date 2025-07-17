@@ -9,8 +9,6 @@ public class Pokemon
     public Type? PrimaryType { get; set; }
     public Type? SecondaryType { get; set; }
     public ICollection<PokemonAbility> Abilities { get; set; } = new List<PokemonAbility>();
-    public ICollection<PokemonMove> Moves { get; set; } = new List<PokemonMove>();
     public ICollection<Evolution> Evolutions { get; set; } = new List<Evolution>();
-
 
 }
