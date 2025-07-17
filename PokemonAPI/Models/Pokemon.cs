@@ -5,12 +5,12 @@ public class Pokemon
 { 
     public int Id { get; set; }
     public string? Name { get; set; }
-    public int PokedexNumber { get; set; }
-    public int PrimaryTypeId { get; set; }
-    public int? SecondaryTypeId { get; set; }
-    public ElementType? PrimaryType { get; set; }
-    public ElementType? SecondaryType { get; set; }
+    public int PokedexNumber { get; set; } 
+    public Type? PrimaryType { get; set; }
+    public Type? SecondaryType { get; set; }
     public ICollection<PokemonAbility> Abilities { get; set; } = new List<PokemonAbility>();
+    public ICollection<PokemonMove> Moves { get; set; } = new List<PokemonMove>();
     public ICollection<Evolution> Evolutions { get; set; } = new List<Evolution>();
+
 
 }

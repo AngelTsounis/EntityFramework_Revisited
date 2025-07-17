@@ -14,7 +14,6 @@ public static class DependencyInjection
         b => b.MigrationsAssembly("Infrastructure")  
     ));
 
-
         return services;
     }
 }
