@@ -1,4 +1,6 @@
 using Infrastructure;
+using Infrastructure.Mappers;
+using PokemonAPI.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +20,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+
+app.MapApiEndpoints();
 
 app.UseHttpsRedirection();
 

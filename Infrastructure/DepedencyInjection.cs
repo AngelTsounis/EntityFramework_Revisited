@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Infrastructure.Mappers;
 
 namespace Infrastructure;
 
@@ -11,9 +12,8 @@ public static class DependencyInjection
         services.AddDbContext<AppDbContext>(options =>
         options.UseSqlServer(
         configuration.GetConnectionString("DefaultConnection"),
-        b => b.MigrationsAssembly("Infrastructure")  
+        b => b.MigrationsAssembly("Infrastructure")
     ));
-
         return services;
     }
 }
