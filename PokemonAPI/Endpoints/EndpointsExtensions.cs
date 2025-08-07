@@ -7,6 +7,7 @@ public static class EndpointsExtensions
     public static IEndpointRouteBuilder MapApiEndpoints(this IEndpointRouteBuilder app)
     {
         app.MapGetPokemons();
+        app.MapGetPokemonByName();
         return app;
     }
 }
