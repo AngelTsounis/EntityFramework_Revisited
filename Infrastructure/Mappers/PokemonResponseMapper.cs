@@ -14,7 +14,7 @@ public static class PokemonResponseMapper
             Name = pokemon.Name,
             PokedexNumber = pokemon.PokedexNumber,
             PrimaryType = pokemon.PrimaryType?.Name,
-            SecondaryType = pokemon.SecondaryType?.Name
+            SecondaryType = pokemon.SecondaryType?.Name,
         };
 
         return pokemonResponse;

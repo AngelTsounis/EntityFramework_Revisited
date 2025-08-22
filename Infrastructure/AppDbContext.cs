@@ -24,10 +24,10 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<Evolution>().HasData(EvolutionSeedData.GetEvolutions());
 
         modelBuilder.Entity<Pokemon>()
-    .HasOne(p => p.PrimaryType)
-    .WithMany()
-    .HasForeignKey(p => p.PrimaryTypeId)
-    .OnDelete(DeleteBehavior.Restrict);
+            .HasOne(p => p.PrimaryType)
+            .WithMany()
+            .HasForeignKey(p => p.PrimaryTypeId)
+            .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.Entity<Pokemon>()
             .HasOne(p => p.SecondaryType)
