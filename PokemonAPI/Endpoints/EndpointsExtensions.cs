@@ -8,6 +8,7 @@ public static class EndpointsExtensions
     {
         app.MapGetPokemons();
         app.MapGetPokemonByName();
+        app.MapToGetPokemonByType();
         return app;
     }
 }

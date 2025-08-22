@@ -11,7 +11,7 @@ public static class GetPokmonByNameEndpoint
 
     public static IEndpointRouteBuilder MapGetPokemonByName(this IEndpointRouteBuilder app)
     {
-        app.MapGet("/pokemons/{name}", async (string name, AppDbContext context) =>
+        app.MapGet("/pokemons/by-name/{name}", async (string name, AppDbContext context) =>
         {
             var pokemon = await context.Pokemons
             .Include(p => p.PrimaryType)
@@ -25,6 +25,7 @@ public static class GetPokmonByNameEndpoint
             var response = pokemon.MapToPokemonResponse();
             return Results.Ok(response);
         }).WithName(Name);
+
         return app;
     }
 }

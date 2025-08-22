@@ -1,5 +1,6 @@
 ﻿using Infrastructure;
 using Microsoft.EntityFrameworkCore;
+using Infrastructure.Mappers;
 
 namespace PokemonAPI.Endpoints.Pokemons;
 
@@ -7,27 +8,32 @@ public static class GetPokemonByType
 {
     public const string Name = "GetPokemonByTypeEndpoint";
 
-    public static IEndpointRouteBuilder MapToGetPokemonByType (this IEndpointRouteBuilder app)
+    public static IEndpointRouteBuilder MapToGetPokemonByType(this IEndpointRouteBuilder app)
     {
-        app.MapGet("/pokemons/{type}", async (string type, AppDbContext context) =>
+        app.MapGet("/pokemons/by-type/{type}", async (string type, AppDbContext context) =>
         {
-            var pokemon = await context.Pokemons
-            .Include(p => p.PrimaryType)
-            .Include(p => p.SecondaryType)
-            //.Where(p => string.Equals(p.PrimaryType?.Name, type, StringComparison.OrdinalIgnoreCase))
-            .Where(p => p.PrimaryType?.Name.ToLower() == type.ToLower() || p.SecondaryType?.Name.ToLower() == type.ToLower())
-            .ToListAsync();
+            // Normalize the type to lower case for case-insensitive comparison, in order to prevent performance issues in the query.
+            var normalizedType = type.ToLower();
 
-            if (pokemon == null)
+            var pokemons = await context.Pokemons
+                .Include(p => p.PrimaryType)
+                .Include(p => p.SecondaryType)
+                .Where(p =>
+                    p.PrimaryType.Name.ToLower() == normalizedType ||
+                    p.SecondaryType.Name.ToLower() == normalizedType)
+                .ToListAsync();
+
+
+            if (!pokemons.Any())
             {
                 return Results.NotFound();
             }
-            var response = pokemon.MapToPokemonResponse();
+
+            var response = pokemons.Select(p => p.MapToPokemonResponse()).ToList();
+
             return Results.Ok(response);
         }).WithName(Name);
-    });
 
         return app;
     }
-
 }

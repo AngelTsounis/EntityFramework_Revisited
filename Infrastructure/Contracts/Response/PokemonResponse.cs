@@ -12,6 +12,5 @@ public class PokemonResponse
     public int PokedexNumber { get; set; }
     public string? PrimaryType { get; set; }
     public string? SecondaryType { get; set; }
-    public string? ElementType { get; set; }
 }
 
