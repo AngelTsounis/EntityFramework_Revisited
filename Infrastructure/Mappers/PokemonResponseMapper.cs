@@ -1,7 +1,7 @@
 ﻿using Application.Contracts.Response;
 using Infrastructure.Models;
 
-namespace Application.Mappers;
+namespace Infrastructure.Mappers;
 
 public static class PokemonResponseMapper
 {

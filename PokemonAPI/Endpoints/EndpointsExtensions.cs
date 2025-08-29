@@ -1,4 +1,5 @@
-﻿using PokemonAPI.Endpoints.Pokemons;
+﻿using Application.Interfaces;
+using PokemonAPI.Endpoints.Pokemons;
 
 namespace PokemonAPI.Endpoints;
 

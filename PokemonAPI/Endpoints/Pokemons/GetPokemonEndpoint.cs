@@ -1,6 +1,7 @@
-﻿using Application.Mappers;
+﻿using Infrastructure.Mappers;
 using Infrastructure;
 using Microsoft.EntityFrameworkCore;
+using Application.Interfaces;
 
 namespace PokemonAPI.Endpoints.Pokemons;
 
@@ -10,14 +11,9 @@ public static class GetPokemonEndpoint
 
     public static IEndpointRouteBuilder MapGetPokemons(this IEndpointRouteBuilder app)
     {
-        app.MapGet("/pokemons", async (AppDbContext context) =>
+        app.MapGet("/pokemons", async (IPokemonRepository repository) =>
         {
-            var pokemons = await context.Pokemons
-                .Include(p => p.PrimaryType)
-                .Include(p => p.SecondaryType)
-                .ToListAsync();
-
-            var response = pokemons.Select(p => p.MapToPokemonResponse()).ToList();
+            var response = await repository.GetAllPokemonsAsync();
             return Results.Ok(response);
         }).WithName(Name);
 

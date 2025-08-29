@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Application.Interfaces;
+using Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -13,6 +15,7 @@ public static class DependencyInjection
         configuration.GetConnectionString("DefaultConnection"),
         b => b.MigrationsAssembly("Infrastructure")
     ));
+        services.AddScoped<IPokemonRepository, PokemonRepository>();
         return services;
     }
 }
