@@ -1,5 +1,5 @@
 using Infrastructure;
-using Infrastructure.Mappers;
+using Application.Mappers;
 using PokemonAPI.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -1,6 +1,6 @@
 ﻿using Infrastructure;
 using Microsoft.EntityFrameworkCore;
-using Infrastructure.Mappers;
+using Application.Mappers;
 
 namespace PokemonAPI.Endpoints.Pokemons;
 

@@ -1,9 +1,7 @@
-﻿ 
-using Infrastructure.Contracts.Request;
-using Infrastructure.Contracts.Response;
+﻿using Application.Contracts.Response;
 using Infrastructure.Models;
 
-namespace Infrastructure.Mappers;
+namespace Application.Mappers;
 
 public static class PokemonResponseMapper
 {

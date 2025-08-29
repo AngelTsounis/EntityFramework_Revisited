@@ -1,4 +1,4 @@
-﻿using Infrastructure.Mappers;
+﻿using Application.Mappers;
 using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
