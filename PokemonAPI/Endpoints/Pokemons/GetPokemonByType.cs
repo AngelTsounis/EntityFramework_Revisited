@@ -1,6 +1,4 @@
-﻿using Infrastructure;
-using Microsoft.EntityFrameworkCore;
-using Infrastructure.Mappers;
+﻿using Application.Services.Interfaces;
 
 namespace PokemonAPI.Endpoints.Pokemons;
 
@@ -10,28 +8,18 @@ public static class GetPokemonByType
 
     public static IEndpointRouteBuilder MapToGetPokemonByType(this IEndpointRouteBuilder app)
     {
-        app.MapGet("/pokemons/by-type/{type}", async (string type, AppDbContext context) =>
+        app.MapGet("/pokemons/type/{type}", async (IPokemonService pokemonService, string pokemonType) =>
         {
-            // Normalize the type to lower case for case-insensitive comparison, in order to prevent performance issues in the query.
-            var normalizedType = type.ToLower();
+            
+            var response = await pokemonService.GetPokemonByTypeServiceAsync(pokemonType);
 
-            var pokemons = await context.Pokemons
-                .Include(p => p.PrimaryType)
-                .Include(p => p.SecondaryType)
-                .Where(p =>
-                    p.PrimaryType.Name.ToLower() == normalizedType ||
-                    p.SecondaryType.Name.ToLower() == normalizedType)
-                .ToListAsync();
-
-
-            if (!pokemons.Any())
+            if (!response.Any())
             {
                 return Results.NotFound();
             }
-
-            var response = pokemons.Select(p => p.MapToPokemonResponse()).ToList();
-
+            
             return Results.Ok(response);
+
         }).WithName(Name);
 
         return app;

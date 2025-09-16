@@ -1,6 +1,5 @@
-using Application.Interfaces;
+using Application;
 using Infrastructure;
-using Infrastructure.Repositories;
 using PokemonAPI.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,8 +10,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddInfrastructure(builder.Configuration);
-
+builder.Services.AddInfrastructure(builder.Configuration.GetConnectionString("DefaultConnection"));
+builder.Services.AddApplication();
 
 var app = builder.Build();
 
