@@ -10,6 +10,7 @@ public static class ApplicationConfiguration
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
         services.AddScoped<IPokemonService, PokemonsService>();
+        services.AddScoped<IAbilityService, AbilityService>();
 
         return services;
     }

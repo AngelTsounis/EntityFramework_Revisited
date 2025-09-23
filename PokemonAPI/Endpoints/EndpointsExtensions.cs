@@ -1,5 +1,6 @@
 ﻿using Application.Interfaces;
 using PokemonAPI.Endpoints.Pokemons;
+using PokemonAPI.Endpoints.Abilities;
 
 namespace PokemonAPI.Endpoints;
 
@@ -10,6 +11,7 @@ public static class EndpointsExtensions
         app.MapGetPokemons();
         app.MapGetPokemonByName();
         app.MapToGetPokemonByType();
+        app.MapToGetAbilityById();
         return app;
     }
 }

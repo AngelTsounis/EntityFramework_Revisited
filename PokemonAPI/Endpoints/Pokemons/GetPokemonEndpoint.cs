@@ -1,5 +1,4 @@
-﻿using Application.Interfaces;
-using Application.Services.Interfaces;
+﻿using Application.Services.Interfaces;
 
 namespace PokemonAPI.Endpoints.Pokemons;
 

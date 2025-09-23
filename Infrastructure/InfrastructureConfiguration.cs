@@ -12,6 +12,7 @@ public static class InfrastructureConfiguration
         services.AddDbContext<AppDbContext>(options =>
         options.UseSqlServer(connectionString));
         services.AddScoped<IPokemonRepository, PokemonRepository>();
+        services.AddScoped<IAbilityRepository, AbilityRepository>();
         return services;
     }
 }

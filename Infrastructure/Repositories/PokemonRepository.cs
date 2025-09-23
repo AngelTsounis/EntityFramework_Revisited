@@ -12,7 +12,6 @@ public class PokemonRepository : IPokemonRepository
     {
         _context = context;
     }
-
     public async Task<List<PokemonResponse>> GetAllPokemonsAsync()
     {
 
@@ -25,7 +24,6 @@ public class PokemonRepository : IPokemonRepository
 
         return pokemons;
     }
-
     public async Task<PokemonResponse?> GetPokemonByNameAsync(string name)
     {
         var pokemonToFind = await _context.Pokemons

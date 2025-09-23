@@ -2,7 +2,7 @@
 
 namespace PokemonAPI.Endpoints.Pokemons;
 
-public static class GetPokemonByType
+public static class GetPokemonByTypeEndpoint
 {
     public const string Name = "GetPokemonByTypeEndpoint";
 
