@@ -19,7 +19,8 @@ public static class GetPokemonEndpoint
 
             return Results.Ok(response);
 
-        }).WithName(Name);
+        }).WithName(Name)
+        .WithTags("Pokemons");
 
         return app;
     }

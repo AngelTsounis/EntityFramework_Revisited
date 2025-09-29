@@ -1,8 +1,7 @@
 ﻿using Application.Contracts.Response;
+using Application.Interfaces;
 
-namespace Application.Interfaces;
-
-public interface IAbilityRepository
+public interface IAbilityRepository : IBaseRepository<AbilityResponse>
 {
-    Task<AbilityResponse> GetAbilityByIdAsync(int id);
+     
 }

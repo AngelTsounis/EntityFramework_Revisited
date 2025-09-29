@@ -3,6 +3,7 @@ using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250929120624_PokemonTrainers")]
+    partial class PokemonTrainers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -101,24 +104,6 @@ namespace Infrastructure.Migrations
                             Id = 10,
                             Description = "Lowers the foe's Attack stat.",
                             Name = "Intimidate"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            Description = "Inflicts regular damage.",
-                            Name = "Scratch"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            Description = "May inflict a burn.",
-                            Name = "Ember"
-                        },
-                        new
-                        {
-                            Id = 13,
-                            Description = "May inflict a burn.",
-                            Name = "Flamethrower"
                         });
                 });
 
@@ -325,9 +310,6 @@ namespace Infrastructure.Migrations
                     b.Property<int>("AbilityId")
                         .HasColumnType("int");
 
-                    b.Property<int>("RequiredLevel")
-                        .HasColumnType("int");
-
                     b.HasKey("PokemonId", "AbilityId");
 
                     b.HasIndex("AbilityId");
@@ -338,80 +320,52 @@ namespace Infrastructure.Migrations
                         new
                         {
                             PokemonId = 1,
-                            AbilityId = 1,
-                            RequiredLevel = 15
+                            AbilityId = 1
                         },
                         new
                         {
                             PokemonId = 2,
-                            AbilityId = 2,
-                            RequiredLevel = 0
+                            AbilityId = 2
                         },
                         new
                         {
                             PokemonId = 3,
-                            AbilityId = 3,
-                            RequiredLevel = 0
+                            AbilityId = 3
                         },
                         new
                         {
                             PokemonId = 4,
-                            AbilityId = 4,
-                            RequiredLevel = 0
+                            AbilityId = 4
                         },
                         new
                         {
                             PokemonId = 5,
-                            AbilityId = 5,
-                            RequiredLevel = 0
+                            AbilityId = 5
                         },
                         new
                         {
                             PokemonId = 6,
-                            AbilityId = 6,
-                            RequiredLevel = 0
+                            AbilityId = 6
                         },
                         new
                         {
                             PokemonId = 7,
-                            AbilityId = 7,
-                            RequiredLevel = 0
+                            AbilityId = 7
                         },
                         new
                         {
                             PokemonId = 8,
-                            AbilityId = 8,
-                            RequiredLevel = 0
+                            AbilityId = 8
                         },
                         new
                         {
                             PokemonId = 9,
-                            AbilityId = 9,
-                            RequiredLevel = 0
+                            AbilityId = 9
                         },
                         new
                         {
                             PokemonId = 10,
-                            AbilityId = 10,
-                            RequiredLevel = 0
-                        },
-                        new
-                        {
-                            PokemonId = 1,
-                            AbilityId = 11,
-                            RequiredLevel = 1
-                        },
-                        new
-                        {
-                            PokemonId = 1,
-                            AbilityId = 12,
-                            RequiredLevel = 7
-                        },
-                        new
-                        {
-                            PokemonId = 1,
-                            AbilityId = 13,
-                            RequiredLevel = 15
+                            AbilityId = 10
                         });
                 });
 

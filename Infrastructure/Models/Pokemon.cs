@@ -1,5 +1,4 @@
-﻿
-namespace Infrastructure.Models;
+﻿namespace Infrastructure.Models;
 
 public class Pokemon
 { 
@@ -8,9 +7,8 @@ public class Pokemon
     public int PokedexNumber { get; set; }
     public int PrimaryTypeId { get; set; }
     public int? SecondaryTypeId { get; set; }
-    public ElementType? PrimaryType { get; set; }
-    public ElementType? SecondaryType { get; set; }
+    public ElementType PrimaryType { get; set; } = null!;
+    public ElementType SecondaryType { get; set; }
     public ICollection<PokemonAbility> Abilities { get; set; } = new List<PokemonAbility>();
-    public ICollection<Evolution> Evolutions { get; set; } = new List<Evolution>();
 
 }

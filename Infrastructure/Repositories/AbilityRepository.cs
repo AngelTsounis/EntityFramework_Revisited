@@ -13,16 +13,12 @@ public class AbilityRepository : IAbilityRepository
         _context = context;
     }
 
-    public async Task<AbilityResponse> GetAbilityByIdAsync(int id)
+    public Task<List<AbilityResponse>> GetAllAsync()
     {
-        var ability = await _context.Abilities.FirstOrDefaultAsync(a => a.Id == id);
+        var ability = _context.Abilities
+            .Select(a => a.MapToAbilityResponse())
+            .ToListAsync();
 
-        if ( ability is null)
-
-        {
-            throw new KeyNotFoundException($"Ability with ID {id} not found.");
-        }
-
-        return ability.MapToAbilityResponse();
+        return ability;
     }
 }

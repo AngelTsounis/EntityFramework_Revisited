@@ -11,8 +11,8 @@ public class AbilityService : IAbilityService
     {
         _abilityRepository = abilityRepository;
     }
-    public async Task<AbilityResponse> GetAbilityByIdServiceAsync(int id)
+    public async Task<List<AbilityResponse>> GetAllAbilitiesServiceAsync()
     {
-        return await _abilityRepository.GetAbilityByIdAsync(id);
+        return await _abilityRepository.GetAllAsync();
     }
 }

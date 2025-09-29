@@ -20,7 +20,8 @@ public static class GetPokmonByNameEndpoint
 
             return Results.Ok(response);
 
-        }).WithName(Name);
+        }).WithName(Name)
+        .WithTags("Pokemons");
 
         return app;
     }

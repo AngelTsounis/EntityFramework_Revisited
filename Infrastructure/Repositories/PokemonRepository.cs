@@ -12,12 +12,14 @@ public class PokemonRepository : IPokemonRepository
     {
         _context = context;
     }
-    public async Task<List<PokemonResponse>> GetAllPokemonsAsync()
+    public async Task<List<PokemonResponse>> GetAllAsync()
     {
 
         var pokemonsToFind = await _context.Pokemons
                 .Include(p => p.PrimaryType)
                 .Include(p => p.SecondaryType)
+                .Include(p => p.Abilities)
+                    .ThenInclude(pa => pa.Ability)
                 .ToListAsync();
 
         var pokemons = pokemonsToFind.Select(p => p.MapToPokemonResponse()).ToList();
@@ -29,6 +31,8 @@ public class PokemonRepository : IPokemonRepository
         var pokemonToFind = await _context.Pokemons
                .Include(p => p.PrimaryType)
                .Include(p => p.SecondaryType)
+               .Include(p => p.Abilities)
+                    .ThenInclude(pa => pa.Ability)
                .SingleOrDefaultAsync(p => p.Name!.ToLower() == name.ToLower());
 
         var pokemon = pokemonToFind?.MapToPokemonResponse();
@@ -47,6 +51,8 @@ public class PokemonRepository : IPokemonRepository
             .Where(p =>
                 p.PrimaryType.Name.ToLower() == normalizedType ||
                 p.SecondaryType.Name.ToLower() == normalizedType)
+            .Include(p => p.Abilities)
+                    .ThenInclude(pa => pa.Ability)
             .ToListAsync();
 
         var response = pokemons.Select(p => p.MapToPokemonResponse()).ToList();

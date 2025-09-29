@@ -9,7 +9,6 @@ public static class AbilityResponseMapper
     {
         var abilityResponse = new AbilityResponse
         {
-            Id = entity.Id,
             Name = entity.Name,
             Description = entity.Description
         };

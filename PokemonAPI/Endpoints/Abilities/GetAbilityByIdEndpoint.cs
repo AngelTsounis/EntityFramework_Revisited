@@ -8,13 +8,15 @@ public static class GetAbilityByIdEndpoint
 
     public static IEndpointRouteBuilder MapToGetAbilityById(this IEndpointRouteBuilder app)
     {
-        app.MapGet("/abilities/{id.int}", async (IAbilityService service, int id) =>
+        app.MapGet("/abilities/{id.int}", async (IAbilityService service) =>
         {
-            var response = await service.GetAbilityByIdServiceAsync(id);
+            var response = await service.GetAllAbilitiesServiceAsync();
 
             return Results.Ok(response);
 
-        }).WithName(Name);
+        }).WithName(Name)
+        .WithTags("Abilities");
+
 
         return app;
     }

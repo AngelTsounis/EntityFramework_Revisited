@@ -13,6 +13,11 @@ public static class PokemonResponseMapper
             PokedexNumber = pokemon.PokedexNumber,
             PrimaryType = pokemon.PrimaryType?.Name,
             SecondaryType = pokemon.SecondaryType?.Name,
+            Abilities = pokemon.Abilities.Select(pa => new AbilityResponse
+            {
+                Name = pa.Ability.Name,
+                Description = pa.Ability.Description
+            }).ToList()
         };
 
         return pokemonResponse;

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Application.Contracts.Response;
+﻿namespace Application.Contracts.Response;
 
 public class PokemonResponse
 {
@@ -12,5 +6,6 @@ public class PokemonResponse
     public int PokedexNumber { get; set; }
     public string? PrimaryType { get; set; }
     public string? SecondaryType { get; set; }
+    public ICollection<AbilityResponse> Abilities { get; set; } = new List<AbilityResponse>();
 }
 

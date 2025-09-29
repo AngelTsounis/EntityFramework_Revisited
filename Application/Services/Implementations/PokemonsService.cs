@@ -14,7 +14,7 @@ public class PokemonsService : IPokemonService
     }
     public async Task<List<PokemonResponse>> GetAllPokemonsServiceAsync()
     {
-        return await _repository.GetAllPokemonsAsync();
+        return await _repository.GetAllAsync();
     }
 
     public async Task<PokemonResponse?> GetPokemonByNameServiceAsync(string name)

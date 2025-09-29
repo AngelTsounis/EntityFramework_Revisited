@@ -11,18 +11,23 @@ public class AppDbContext : DbContext
     public DbSet<ElementType> Types => Set<ElementType>();
     public DbSet<Ability> Abilities => Set<Ability>();
     public DbSet<PokemonAbility> PokemonAbilities => Set<PokemonAbility>();
-    public DbSet<Evolution> Evolutions => Set<Evolution>();
+    public DbSet<Trainer> Trainers => Set<Trainer>();
+    public DbSet<TrainerPokemon> TrainerPokemons => Set<TrainerPokemon>();
+    public DbSet<TrainerPokemonAbility> TrainerPokemonAbilities => Set<TrainerPokemonAbility>();
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
+
+        // Seed data
         modelBuilder.Entity<Pokemon>().HasData(PokemonSeedData.GetPokemons());
         modelBuilder.Entity<ElementType>().HasData(ElementTypeSeedData.GetElementTypes());
         modelBuilder.Entity<Ability>().HasData(AbilitySeedData.GetAbilities());
         modelBuilder.Entity<PokemonAbility>().HasData(PokemonAbilitySeedData.GetPokemonAbilities());
-        modelBuilder.Entity<Evolution>().HasData(EvolutionSeedData.GetEvolutions());
 
+        // Configure relationships
         modelBuilder.Entity<Pokemon>()
             .HasOne(p => p.PrimaryType)
             .WithMany()
@@ -45,11 +50,27 @@ public class AppDbContext : DbContext
             .HasForeignKey(pa => pa.PokemonId)
             .OnDelete(DeleteBehavior.Restrict);
 
-        modelBuilder.Entity<Evolution>()
-            .HasOne(e => e.FromPokemon)
-            .WithMany(p => p.Evolutions)
-            .HasForeignKey(e => e.FromPokemonId)
-            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<TrainerPokemon>()
+                    .HasOne(tp => tp.Trainer)
+                    .WithMany(t => t.OwnedPokemons)
+                    .HasForeignKey(tp => tp.TrainerId);
+
+        modelBuilder.Entity<TrainerPokemon>()
+            .HasOne(tp => tp.Pokemon)
+            .WithMany()
+            .HasForeignKey(tp => tp.PokemonId);
+
+        modelBuilder.Entity<TrainerPokemonAbility>()
+            .HasOne(tpa => tpa.TrainerPokemon)
+            .WithMany(tp => tp.UnlockedAbilities)
+            .HasForeignKey(tpa => tpa.TrainerPokemonId);
+
+        modelBuilder.Entity<TrainerPokemonAbility>()
+            .HasOne(tpa => tpa.Ability)
+            .WithMany()
+            .HasForeignKey(tpa => tpa.AbilityId);
+
     }
 }
 

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Infrastructure.Models;
+﻿using Infrastructure.Models;
 
 namespace Infrastructure.Data;
 
@@ -20,7 +15,10 @@ public static class AbilitySeedData
         new Ability { Id = 7, Name = "Sturdy", Description = "Prevents one-hit KO." },
         new Ability { Id = 8, Name = "Cloud Nine", Description = "Eliminates weather effects." },
         new Ability { Id = 9, Name = "Synchronize", Description = "Passes on status problems." },
-        new Ability { Id = 10, Name = "Intimidate", Description = "Lowers the foe's Attack stat." }
+        new Ability { Id = 10, Name = "Intimidate", Description = "Lowers the foe's Attack stat." },
+        new Ability { Id = 11, Name = "Scratch", Description = "Inflicts regular damage." },
+        new Ability { Id = 12, Name = "Ember", Description = "May inflict a burn." },
+        new Ability { Id = 13, Name = "Flamethrower", Description = "May inflict a burn."}
     };
 }
 

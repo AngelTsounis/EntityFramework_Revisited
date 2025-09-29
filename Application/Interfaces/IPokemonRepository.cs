@@ -1,10 +1,8 @@
 ﻿using Application.Contracts.Response;
+using Application.Interfaces;
 
-namespace Application.Interfaces;
-
-public interface IPokemonRepository
+public interface IPokemonRepository : IBaseRepository<PokemonResponse>
 {
-    Task<List<PokemonResponse>> GetAllPokemonsAsync();
     Task<PokemonResponse?> GetPokemonByNameAsync(string name);
-    Task<List<PokemonResponse>?> GetPokemonByTypeAsync(string type);
+    Task<List<PokemonResponse>> GetPokemonByTypeAsync(string type);
 }
