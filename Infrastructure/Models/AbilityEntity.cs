@@ -1,6 +1,6 @@
 ﻿namespace Infrastructure.Models;
 
-public class Ability
+public class AbilityEntity
 {
     public int Id { get; set; }
     public string Name { get; set; } = null!;

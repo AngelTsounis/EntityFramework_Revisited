@@ -1,7 +1,7 @@
 ﻿
 namespace Infrastructure.Models;
 
-public class ElementType
+public class ElementTypeEntity
 {
     public int Id { get; set; }
     public string Name { get; set; } = null!;

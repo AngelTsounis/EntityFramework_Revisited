@@ -5,7 +5,7 @@ namespace Infrastructure.Mappers;
 
 public static class PokemonResponseMapper
 {
-    public static PokemonResponse MapToPokemonResponse(this Pokemon pokemon)
+    public static PokemonResponse MapToPokemonResponse(this PokemonEntity pokemon)
     {
         var pokemonResponse = new PokemonResponse
         {

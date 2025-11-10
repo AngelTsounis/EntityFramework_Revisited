@@ -17,7 +17,6 @@ public static class GetAbilityByIdEndpoint
         }).WithName(Name)
         .WithTags("Abilities");
 
-
         return app;
     }
 }

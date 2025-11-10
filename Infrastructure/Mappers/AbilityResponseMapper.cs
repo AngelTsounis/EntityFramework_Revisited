@@ -5,7 +5,7 @@ namespace Infrastructure.Mappers;
 
 public static class AbilityResponseMapper
 {
-    public static AbilityResponse MapToAbilityResponse (this Ability entity)
+    public static AbilityResponse MapToAbilityResponse (this AbilityEntity entity)
     {
         var abilityResponse = new AbilityResponse
         {

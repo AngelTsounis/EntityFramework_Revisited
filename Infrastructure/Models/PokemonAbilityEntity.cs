@@ -1,12 +1,12 @@
 ﻿namespace Infrastructure.Models;
 
-public class PokemonAbility
+public class PokemonAbilityEntity
 {
     public int PokemonId { get; set; }
-    public Pokemon Pokemon { get; set; } = null!;
+    public PokemonEntity Pokemon { get; set; } = null!;
 
     public int AbilityId { get; set; }
-    public Ability Ability { get; set; } = null!;
+    public AbilityEntity Ability { get; set; } = null!;
 
     public int RequiredLevel { get; set; }
 }
