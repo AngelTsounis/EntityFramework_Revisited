@@ -17,7 +17,8 @@ public static class PokemonResponseMapper
             {
                 Name = pa.Ability.Name,
                 Description = pa.Ability.Description
-            }).ToList()
+            }).ToList(),
+            Weaknesses = pokemon.Weaknesses.Select(w => w.ElementType.Name).ToList()
         };
 
         return pokemonResponse;

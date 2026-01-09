@@ -11,11 +11,8 @@ public class AppDbContext : DbContext
     public DbSet<ElementTypeEntity> Types => Set<ElementTypeEntity>();
     public DbSet<AbilityEntity> Abilities => Set<AbilityEntity>();
     public DbSet<PokemonAbilityEntity> PokemonAbilities => Set<PokemonAbilityEntity>();
-    public DbSet<TrainerEntity> Trainers => Set<TrainerEntity>();
-    public DbSet<TrainerPokemonEntity> TrainerPokemons => Set<TrainerPokemonEntity>();
-    public DbSet<TrainerPokemonAbilityEntity> TrainerPokemonAbilities => Set<TrainerPokemonAbilityEntity>();
-
-
+    public DbSet<WeaknessesEntity> Weaknesses => Set<WeaknessesEntity>();
+    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
@@ -26,6 +23,7 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<ElementTypeEntity>().HasData(ElementTypeSeedData.GetElementTypes());
         modelBuilder.Entity<AbilityEntity>().HasData(AbilitySeedData.GetAbilities());
         modelBuilder.Entity<PokemonAbilityEntity>().HasData(PokemonAbilitySeedData.GetPokemonAbilities());
+        modelBuilder.Entity<WeaknessesEntity>().HasData(WeaknessesSeedData.GetWeaknesses());
 
         // Configure relationships
         modelBuilder.Entity<PokemonEntity>()
@@ -40,7 +38,6 @@ public class AppDbContext : DbContext
             .HasForeignKey(p => p.SecondaryTypeId)
             .OnDelete(DeleteBehavior.Restrict);
 
-
         modelBuilder.Entity<PokemonAbilityEntity>()
             .HasKey(pa => new { pa.PokemonId, pa.AbilityId });
 
@@ -50,27 +47,20 @@ public class AppDbContext : DbContext
             .HasForeignKey(pa => pa.PokemonId)
             .OnDelete(DeleteBehavior.Restrict);
 
+        modelBuilder.Entity<WeaknessesEntity>()
+            .HasKey(w => new { w.PokemonId, w.ElementTypeId });
 
-        modelBuilder.Entity<TrainerPokemonEntity>()
-                    .HasOne(tp => tp.Trainer)
-                    .WithMany(t => t.OwnedPokemons)
-                    .HasForeignKey(tp => tp.TrainerId);
+        modelBuilder.Entity<WeaknessesEntity>()
+            .HasOne(w => w.Pokemon)
+            .WithMany(p => p.Weaknesses)
+            .HasForeignKey(w => w.PokemonId)
+            .OnDelete(DeleteBehavior.Cascade);
 
-        modelBuilder.Entity<TrainerPokemonEntity>()
-            .HasOne(tp => tp.Pokemon)
+        modelBuilder.Entity<WeaknessesEntity>()
+            .HasOne(w => w.ElementType)
             .WithMany()
-            .HasForeignKey(tp => tp.PokemonId);
-
-        modelBuilder.Entity<TrainerPokemonAbilityEntity>()
-            .HasOne(tpa => tpa.TrainerPokemon)
-            .WithMany(tp => tp.UnlockedAbilities)
-            .HasForeignKey(tpa => tpa.TrainerPokemonId);
-
-        modelBuilder.Entity<TrainerPokemonAbilityEntity>()
-            .HasOne(tpa => tpa.Ability)
-            .WithMany()
-            .HasForeignKey(tpa => tpa.AbilityId);
-
+            .HasForeignKey(w => w.ElementTypeId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }
 

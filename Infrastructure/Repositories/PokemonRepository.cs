@@ -20,6 +20,8 @@ public class PokemonRepository : IPokemonRepository
                 .Include(p => p.SecondaryType)
                 .Include(p => p.Abilities)
                     .ThenInclude(pa => pa.Ability)
+                .Include(p => p.Weaknesses)
+                    .ThenInclude(w => w.ElementType)
                 .ToListAsync();
 
         var pokemons = pokemonsToFind.Select(p => p.MapToPokemonResponse()).ToList();
@@ -33,6 +35,8 @@ public class PokemonRepository : IPokemonRepository
                .Include(p => p.SecondaryType)
                .Include(p => p.Abilities)
                     .ThenInclude(pa => pa.Ability)
+               .Include(p => p.Weaknesses)
+                    .ThenInclude(w => w.ElementType)
                .SingleOrDefaultAsync(p => p.Name!.ToLower() == name.ToLower());
 
         var pokemon = pokemonToFind?.MapToPokemonResponse();
@@ -53,6 +57,8 @@ public class PokemonRepository : IPokemonRepository
                 p.SecondaryType.Name.ToLower() == normalizedType)
             .Include(p => p.Abilities)
                     .ThenInclude(pa => pa.Ability)
+            .Include(p => p.Weaknesses)
+                    .ThenInclude(w => w.ElementType)
             .ToListAsync();
 
         var response = pokemons.Select(p => p.MapToPokemonResponse()).ToList();
